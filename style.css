@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Comfortaa', sans-serif;
+
+}
+
+body {
+    background-color: #efefef;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='16' viewBox='0 0 12 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 .99C4 .445 4.444 0 5 0c.552 0 1 .45 1 .99v4.02C6 5.555 5.556 6 5 6c-.552 0-1-.45-1-.99V.99zm6 8c0-.546.444-.99 1-.99.552 0 1 .45 1 .99v4.02c0 .546-.444.99-1 .99-.552 0-1-.45-1-.99V8.99z' fill='%238b8b8b' fill-opacity='0.21' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.container {
+    /* max-width: 1320px; */
+    padding: 15px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.container h1 {
+    font-size: clamp(1.375rem, calc(1.375rem + ((1vw - 0.2rem) * 2.375)), 3.75rem);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    grid-column: 1/3;
+}
+
+.inputContainer {
+    row-gap: 1.5rem;
+    background-color: white;
+    height: 700px;
+    padding: 25px;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+}
+
+.inputContainer input {
+    padding: 1em;
+    border-radius: 25px;
+    border: 1px solid gray;
+    grid-column: 1/2;
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: 1fr 15%;
+    gap: 24px;
+    position: relative;
+}
+
+.inputs small {
+    color: red;
+    font-weight: bold;
+    margin-left: 15px;
+    display: none;
+}
+
+input {
+    background-color: #EFEFEF;
+    outline: none;
+}
+
+.inputContainer button {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    padding: 0 1em;
+    border-radius: 25px;
+    border: 1px solid;
+    justify-self: center;
+}
+
+
+#autocomplete-list {
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+    grid-column: 1/3;
+    position: absolute;
+    top: 100%;
+    margin-top: 15px;
+    background-color: #EFEFEF;
+    border-radius: 10px;
+}
+
+#autocomplete-list-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+#autocomplete-list-item:hover {
+    background-color: #e0e0e0;
+}
+
+.selected {
+    background-color: #e0e0e0;
+}
+
+.recentCard {
+    background-color: #748CF1;
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.501);
+    justify-content: space-around;
+}
+
+.recentCard button {
+
+    outline: 0;
+    cursor: pointer;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    vertical-align: middle;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #748CF1;
+    background-color: #fafbfc;
+    border-color: #1b1f2326;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    transition-property: color, background-color, border-color;
+
+
+
+}
+
+.recentCard button:hover {
+    color: #ffffff;
+    background-color: #748CF1;
+    border-color: #1b1f2326;
+    box-shadow: rgba(27, 31, 35, 0.1) 0px 1px 0px 0px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset;
+    transition-duration: 0.1s;
+}
+
+.cityName {
+    align-self: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.recentCard div {}
+
+.recentCard div:nth-child(2) span,
+.recentCard div:nth-child(3) span,
+.recentCard div:nth-child(4) span {
+    font-weight: bold;
+}
+
+
+.recentCard div:nth-child(2),
+.recentCard div:nth-child(3),
+.recentCard div:nth-child(4),
+.recentCard div:nth-child(5) {
+    display: flex;
+    justify-content: space-around;
+}
+
+.displayRecent {
+    /* padding: 20px; */
+    max-height: 700px;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+}
+
+.recentText {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.displayCard {
+    margin: 0 auto;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.displayCard hr {
+    width: 80%;
+}
+
+.displayCard div:nth-child(2) {
+    display: flex;
+    align-items: start;
+}
+
+.celcius {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.temp_value {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.dayNightText {
+    font-weight: bold;
+}
+
+
+.day_time {
+    display: flex;
+    gap: 10px;
+}

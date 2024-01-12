@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&displayRecent=swap"
+        rel="stylesheet">
+</head>
+
+
+
+
+<body>
+
+
+    <section class="container main">
+
+        <h1>Weather App</h1>
+
+        <div class="inputContainer">
+            <div class="inputs">
+                <input id="search__input" type="text" placeholder="Enter City Name">
+                <div id="autocomplete-list"></div>
+                <small id="error">We dont have data for this city</small>
+                <button id="searchBtn" class="btn">Search</button>
+            </div>
+
+            <div id="display" class="display">
+                <div class="displayCard">
+                    <div class="displayCard">
+                        <img id="dayNightImg" src="images/day.svg" alt="day" width="120" height="120">
+                        <div>
+                            <span id="temp_value" class="temp_value">0</span>
+                            <span class="celcius">
+                                <sup>&deg;</sup>
+                                C
+                            </span>
+                        </div>
+
+                        <hr>
+
+                        <div class="info">
+                            <span id="date" class="date"></span>
+                            <div class="day_time">
+                                <span id="day" class="day">Friday</span>
+                                <span id="time" class="time">12:44 PM</span>
+                            </div>
+                            <span id="dayNightText" class="dayNightText">Day</span>
+                        </div>
+                        <h2 id="location">Mumbai</h2>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="displayRecent" class="displayRecent">
+
+        </div>
+    </section>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
