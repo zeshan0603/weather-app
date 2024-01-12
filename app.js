@@ -106,32 +106,15 @@ function showDisplayCardData() {
           dayNightText.textContent = "Night";
         }
 
-        const dateArray = localtime.split(/[- :]/);
-        const date = new Date(
-          Date.UTC(
-            parseInt(dateArray[0]),
-            parseInt(dateArray[1]) - 1,
-            parseInt(dateArray[2]),
-            parseInt(dateArray[3]),
-            parseInt(dateArray[4]),
-            parseInt(dateArray[5])
-          )
-        );
+        // Use moment.js to parse and format the date and time
+        const date = moment(localtime);
 
-        day.textContent = days[date.getUTCDay()];
+        day.textContent = days[date.day()];
 
-        let currentDay = String(date.getUTCDate()).padStart(2, "0");
-        let currentMonth = String(date.getUTCMonth() + 1).padStart(2, "0");
-        let currentYear = date.getUTCFullYear();
-        let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
+        let currentDate = date.format("DD-MM-YYYY");
         dateEle.textContent = currentDate;
 
-        let time = date.toLocaleString("en-US", {
-          hour: "numeric",
-          minute: "numeric",
-          hour12: true,
-        });
-
+        let time = date.format("hh:mm A");
         timeEle.textContent = time;
       })
       .catch((error) => {
