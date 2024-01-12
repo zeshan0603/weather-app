@@ -96,8 +96,6 @@ function showDisplayCardData() {
         location.textContent = name;
         temp_value.textContent = tempC;
 
-        console.log();
-
         if (isDay == 1) {
           dayNightImg.setAttribute("src", "images/day.svg");
           dayNightImg.setAttribute("alt", "day");
@@ -108,12 +106,23 @@ function showDisplayCardData() {
           dayNightText.textContent = "Night";
         }
 
-        const date = new Date(localtime);
-        day.textContent = days[date.getDay()];
+        const dateArray = localtime.split(/[- :]/);
+        const date = new Date(
+          Date.UTC(
+            parseInt(dateArray[0]),
+            parseInt(dateArray[1]) - 1,
+            parseInt(dateArray[2]),
+            parseInt(dateArray[3]),
+            parseInt(dateArray[4]),
+            parseInt(dateArray[5])
+          )
+        );
 
-        let currentDay = String(date.getDate()).padStart(2, "0");
-        let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
-        let currentYear = date.getFullYear();
+        day.textContent = days[date.getUTCDay()];
+
+        let currentDay = String(date.getUTCDate()).padStart(2, "0");
+        let currentMonth = String(date.getUTCMonth() + 1).padStart(2, "0");
+        let currentYear = date.getUTCFullYear();
         let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
         dateEle.textContent = currentDate;
 
