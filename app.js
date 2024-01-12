@@ -96,6 +96,8 @@ function showDisplayCardData() {
         location.textContent = name;
         temp_value.textContent = tempC;
 
+        console.log();
+
         if (isDay == 1) {
           dayNightImg.setAttribute("src", "images/day.svg");
           dayNightImg.setAttribute("alt", "day");
@@ -106,16 +108,26 @@ function showDisplayCardData() {
           dayNightText.textContent = "Night";
         }
 
-        // Use moment.js to parse and format the date and time
-        const date = moment(localtime);
+        const date = new Date(localtime);
+        day.textContent = days[date.getDay()];
+        console.log(days[date.getDay()]);
 
-        day.textContent = days[date.day()];
-
-        let currentDate = date.format("DD-MM-YYYY");
+        let currentDay = String(date.getDate()).padStart(2, "0");
+        let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
+        let currentYear = date.getFullYear();
+        let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
         dateEle.textContent = currentDate;
+        console.log(currentDate);
 
-        let time = date.format("hh:mm A");
+        let time = date.toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        });
+
         timeEle.textContent = time;
+
+        console.log(time);
       })
       .catch((error) => {
         console.log(error);
