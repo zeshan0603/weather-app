@@ -48,7 +48,7 @@ function showDisplayCardData() {
           const { latitude, longitude } = position.coords;
           // Use reverse geocoding to get the city name from coordinates
           fetch(
-            `http://api.weatherapi.com/v1/current.json?key=61d42592d8214bd19ca92102240901&q=${latitude},${longitude}&aqi=no`
+            `https://api.weatherapi.com/v1/current.json?key=61d42592d8214bd19ca92102240901&q=${latitude},${longitude}&aqi=no`
           )
             .then((response) => response.json())
             .then((data) => {
@@ -77,7 +77,7 @@ function showDisplayCardData() {
   }
 
   function fetchData(city) {
-    const url = `http://api.weatherapi.com/v1/current.json?key=61d42592d8214bd19ca92102240901&q=${city}&aqi=no`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=61d42592d8214bd19ca92102240901&q=${city}&aqi=no`;
     const response = fetch(url);
     response
       .then((response) => {
@@ -153,7 +153,7 @@ function showData() {
 function addData() {
   let cityName = inputElement.value;
   if (!cityName == "") {
-    const url = `http://api.weatherapi.com/v1/current.json?key=61d42592d8214bd19ca92102240901&q=${cityName}&aqi=no`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=61d42592d8214bd19ca92102240901&q=${cityName}&aqi=no`;
     const response = fetch(url);
     response
       .then((response) => {
