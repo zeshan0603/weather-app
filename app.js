@@ -152,60 +152,62 @@ function showData() {
 
 function addData() {
   let cityName = inputElement.value;
-  if (!cityName == "") {
-    const url = `https://api.weatherapi.com/v1/current.json?key=61d42592d8214bd19ca92102240901&q=${cityName}&aqi=no`;
-    const response = fetch(url);
-    response
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Could Not Fetch Resource");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        errorMessage.style.display = "none";
-        console.log(data);
+  if (!cityName) {
+    alert("PLEASE ENTER AN INPUT");
+    return;
+  }
 
-        let name = data.location.name;
-        let tempC = data.current.temp_c;
-        let tempF = data.current.temp_f;
-        let windKPH = data.current.wind_kph;
+  const url = `https://api.weatherapi.com/v1/current.json?key=61d42592d8214bd19ca92102240901&q=${cityName}&aqi=no`;
+  const response = fetch(url);
 
-        let object = {
-          name: name,
-          tempC: tempC,
-          tempF: tempF,
-          windKPH: windKPH,
-        };
+  response
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Could Not Fetch Resource");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      errorMessage.style.display = "none";
+      console.log(data);
 
-        let recent;
-        if (localStorage.getItem("recent") == null) {
-          recent = [];
-        } else {
-          recent = JSON.parse(localStorage.getItem("recent"));
-        }
-        recent.push({
-          name: name,
-          tempC: tempC,
-          tempF: tempF,
-          windKPH: windKPH,
-        });
+      let name = data.location.name;
+      let tempC = data.current.temp_c;
+      let tempF = data.current.temp_f;
+      let windKPH = data.current.wind_kph;
 
+      let newCityData = {
+        name: name,
+        tempC: tempC,
+        tempF: tempF,
+        windKPH: windKPH,
+      };
+
+      let recent;
+
+      if (localStorage.getItem("recent") == null) {
+        recent = [];
+      } else {
+        recent = JSON.parse(localStorage.getItem("recent"));
+      }
+
+      // Check if the city is already in the recent list
+      if (!recent.some((city) => city.name === name)) {
+        recent.push(newCityData);
         localStorage.setItem("recent", JSON.stringify(recent));
         showData();
-      })
-      .catch((error) => {
-        console.log(error);
-        errorMessage.style.display = "block";
-      });
-  } else {
-    alert("PLEASE ENTER AN INPUT");
-  }
-  if (cityName == "") {
-    console.log("empty");
-  } else {
-    console.log("full");
-  }
+      } else {
+        alert("CIty already in recents");
+        console.log("City already exists in recent list");
+        // You may want to display a message or take other actions here
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      // ERROR MESSAGE FOR NOT FOUND
+      errorMessage.textContent = "We dont have data for this city";
+      errorMessage.style.display = "block";
+    });
 }
 
 function deleteData(index) {
